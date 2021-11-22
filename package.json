@@ -1,5 +1,5 @@
 {
-  "name": "@natpkq/vn-local",
+  "name": "@natpkg/vn-local",
   "version": "1.0.0",
   "description": "VN province, city, county, address",
   "main": "src/index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:natpkq/vn-local.git"
+    "url": "git@github.com:natpkg/vn-local.git"
   },
   "keywords": [
     "VN",
