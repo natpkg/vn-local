@@ -13,37 +13,55 @@ const generateProvinces = (fileName) => {
   const provinceSheet = XLSX.readFile(path.resolve(excelPath, fileName)).Sheets[
     DEFAULT_SHEET
   ];
+  const provincesCode = {}
   provinces = XLSX.utils
     .sheet_to_json(provinceSheet, { raw: true })
-    .map((item) => ({
-      code: item['Mã'],
-      name: item['Tên'],
-      unit: item['Cấp'],
-    }))
+    .map((item) =>{
+      const info =  {
+        code: item['Mã'],
+        name: item['Tên'],
+        unit: item['Cấp'],
+      }
+      provincesCode[item['Mã']] = info
+      return info
+    })
     .filter((item) => item.code);
   fs.writeFileSync(
     path.resolve(jsonPath, 'provinces.json'),
     JSON.stringify(provinces, null, 2)
+  );
+  fs.writeFileSync(
+    path.resolve(jsonPath, 'provincesCode.json'),
+    JSON.stringify(provincesCode, null, 2)
   );
 };
 
 const generateDistricts = (fileName) => {
   const districtsSheet = XLSX.readFile(path.resolve(excelPath, fileName))
     .Sheets[DEFAULT_SHEET];
+    const districtsCode = {}
   districts = XLSX.utils
     .sheet_to_json(districtsSheet, { raw: true })
-    .map((item) => ({
-      code: item['Mã'],
-      name: item['Tên'],
-      unit: item['Cấp'],
-      provinceCode: item['Mã TP'],
-      provinceName: item['Tỉnh / Thành Phố'],
-      fullName: `${item['Tên']}, ${item['Tỉnh / Thành Phố']}`,
-    }))
+    .map((item) => {
+      const info = {
+        code: item['Mã'],
+        name: item['Tên'],
+        unit: item['Cấp'],
+        provinceCode: item['Mã TP'],
+        provinceName: item['Tỉnh / Thành Phố'],
+        fullName: `${item['Tên']}, ${item['Tỉnh / Thành Phố']}`,
+      }
+      districtsCode[item['Mã']] = info
+      return info
+    })
     .filter((item) => item.code);
   fs.writeFileSync(
     path.resolve(jsonPath, 'districts.json'),
     JSON.stringify(districts, null, 2)
+  );
+  fs.writeFileSync(
+    path.resolve(jsonPath, 'districtsCode.json'),
+    JSON.stringify(districtsCode, null, 2)
   );
 };
 
@@ -51,22 +69,31 @@ const generateWards = (fileName) => {
   const wardsSheet = XLSX.readFile(path.resolve(excelPath, fileName)).Sheets[
     DEFAULT_SHEET
   ];
+  const wardsCode = {}
   wards = XLSX.utils
     .sheet_to_json(wardsSheet, { raw: true })
-    .map((item) => ({
-      code: item['Mã'],
-      name: item['Tên'],
-      unit: item['Cấp'],
-      districtCode: item['Mã QH'],
-      districtName: item['Quận Huyện'],
-      provinceCode: item['Mã TP'],
-      provinceName: item['Tỉnh / Thành Phố'],
-      fullName: `${item['Tên']}, ${item['Quận Huyện']}, ${item['Tỉnh / Thành Phố']}`,
-    }))
+    .map((item) => {
+      const info ={
+        code: item['Mã'],
+        name: item['Tên'],
+        unit: item['Cấp'],
+        districtCode: item['Mã QH'],
+        districtName: item['Quận Huyện'],
+        provinceCode: item['Mã TP'],
+        provinceName: item['Tỉnh / Thành Phố'],
+        fullName: `${item['Tên']}, ${item['Quận Huyện']}, ${item['Tỉnh / Thành Phố']}`,
+      }
+      wardsCode[item['Mã']] = info
+      return info
+    })
     .filter((item) => item.code);
   fs.writeFileSync(
     path.resolve(jsonPath, 'wards.json'),
     JSON.stringify(wards, null, 2)
+  );
+  fs.writeFileSync(
+    path.resolve(jsonPath, 'wardsCode.json'),
+    JSON.stringify(wardsCode, null, 2)
   );
 };
 

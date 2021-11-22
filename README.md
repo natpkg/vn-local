@@ -5,15 +5,18 @@ https://www.gso.gov.vn/phuong-phap-thong-ke/danh-muc/don-vi-hanh-chinh/
 ## Install
 
 ```
-$ npm install vn-local
+$ npm install @natpkg/vn-local
 ```
 
 ## Functions
 
 | Function                                 | Desciption                             |
 | ---------------------------------------- | -------------------------------------- |
-| getProvinces()                           | Lấy danh sách tỉnh/thành phố           |
+| getProvinces()                           | Lấy danh sách các tỉnh/thành phố       |
+| getProvinceByCode()                      | Lấy thông tin tỉnh/thành phố           |
 | getDistricts()                           | Lấy danh sách các huyện/quận           |
+| getDistrictByCode()                      | Lấy thông tin huyện/quận               |
 | getWards()                               | Lấy danh sách các xã/phường            |
+| getWardByCode()                          | Lấy thông tin xã/phường                |
 | getDistrictsByProvinceCode(provinceCode) | Lấy danh sách huyện/ quận theo mã tỉnh |
 | getWardsByDistrictCode(districtCode)     | Lấy danh sách phường/ xã theo mã huyện |
